@@ -8,8 +8,10 @@ def generate_diet_plan(prompt):
     # passing prompt to gemini
     return gemini_response(prompt)
 
+#page config
+st.set_page_config(page_title="7Nutrition",page_icon='🥗',layout='wide',)
 # Streamlit App
-st.title("7Nutrient 🥗 : A Simple 7 Day Nutrition Planner")
+st.title("7Nutrient 🥗 : 7 Day Nutrition Based Meal Planner")
 
 # Sidebar inputs
 age = st.sidebar.number_input("Enter your age:", min_value=0, max_value=120, value=25)
@@ -30,8 +32,9 @@ user_prompt = input_prompt.format(
 )
 
 # Button to generate the plan
-if st.button("Generate Diet Plan"):
-    plan = generate_diet_plan(user_prompt)
-    st.subheader("Your Personalized 7-Day Plan 🥗")
-    st.write(plan)
+if st.button("Generate Meal Plan"):
+    with st.spinner("Genrating Meal Plan") :
+        plan = generate_diet_plan(user_prompt)
+        st.subheader("Your Personalized 7-Day Plan 🥗")
+        st.write(plan)
 
